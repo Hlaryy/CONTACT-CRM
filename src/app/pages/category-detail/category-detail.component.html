@@ -1,0 +1,26 @@
+<div class="container">
+  <a routerLink="/categories" class="back-link">← Retour aux catégories</a>
+
+  @if (category) {
+    <div class="category-header" [style.border-left-color]="category.color">
+      <h2>Contacts dans la catégorie : {{ category.name }}</h2>
+      <p>{{ contacts.length }} contact(s) trouvé(s)</p>
+    </div>
+
+    <div class="contact-list">
+      @for (contact of contacts; track contact.id) {
+        <div class="contact-card">
+          <div>
+            <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
+            <p>{{ contact.email }} • {{ contact.company || 'Sans entreprise' }}</p>
+          </div>
+          <a [routerLink]="['/contacts', contact.id]" class="btn-detail">Voir la fiche</a>
+        </div>
+      } @empty {
+        <p class="empty-msg">Aucun contact n'est encore associé à cette catégorie.</p>
+      }
+    </div>
+  } @else {
+    <p class="error-msg">Catégorie introuvable.</p>
+  }
+</div>

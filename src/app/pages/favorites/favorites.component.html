@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="header-actions">
+    <h2>Mes Contacts Favoris ({{ favoriteContacts.length }})</h2>
+    <a routerLink="/contacts" class="btn-secondary">Voir tous les contacts</a>
+  </div>
+
+  <div class="favorites-grid">
+    @for (contact of favoriteContacts; track contact.id) {
+      <div class="favorite-card">
+        <div class="card-top">
+          <div>
+            <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
+            @if (getCategory(contact.categoryId); as cat) {
+              <span class="category-badge" [style.background-color]="cat.color">
+                {{ cat.name }}
+              </span>
+            }
+          </div>
+          <button
+            (click)="onRemoveFavorite(contact.id)"
+            class="btn-star"
+            title="Retirer des favoris"
+          >
+            ★
+          </button>
+        </div>
+
+        <div class="card-body">
+          <p><strong>Email :</strong> {{ contact.email }}</p>
+          <p><strong>Tél :</strong> {{ contact.phone }}</p>
+          @if (contact.company) {
+            <p><strong>Entreprise :</strong> {{ contact.company }}</p>
+          }
+        </div>
+
+        <div class="card-actions">
+          <a [routerLink]="['/contacts', contact.id]" class="btn-view">Voir la fiche</a>
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>Vous n'avez aucun contact favori pour le moment.</p>
+        <a routerLink="/contacts" class="btn-primary">Parcourir mes contacts</a>
+      </div>
+    }
+  </div>
+</div>

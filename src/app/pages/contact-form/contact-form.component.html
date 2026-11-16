@@ -1,0 +1,85 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Modifier le contact' : 'Nouveau contact' }}</h2>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="firstName">Prénom *</label>
+        <input id="firstName" type="text" formControlName="firstName" placeholder="Ex: Alice">
+        @if (contactForm.get('firstName')?.invalid && contactForm.get('firstName')?.touched) {
+          <span class="error-text">Le prénom est obligatoire (2 caractères min.).</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Nom *</label>
+        <input id="lastName" type="text" formControlName="lastName" placeholder="Ex: Martin">
+        @if (contactForm.get('lastName')?.invalid && contactForm.get('lastName')?.touched) {
+          <span class="error-text">Le nom est obligatoire (2 caractères min.).</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input id="email" type="email" formControlName="email" placeholder="alice@exemple.fr">
+        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+          <span class="error-text">Veuillez saisir une adresse email valide.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone *</label>
+        <input id="phone" type="tel" formControlName="phone" placeholder="06 12 34 56 78">
+        @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+          <span class="error-text">Le numéro de téléphone est obligatoire.</span>
+        }
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="company">Entreprise</label>
+        <input id="company" type="text" formControlName="company" placeholder="Ex: Safran">
+      </div>
+
+      <div class="form-group">
+        <label for="jobTitle">Poste</label>
+        <input id="jobTitle" type="text" formControlName="jobTitle" placeholder="Ex: Développeuse Web">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="categoryId">Catégorie *</label>
+      <select id="categoryId" formControlName="categoryId">
+        <option value="">-- Sélectionner une catégorie --</option>
+        @for (cat of categories; track cat.id) {
+          <option [value]="cat.id">{{ cat.name }}</option>
+        }
+      </select>
+      @if (contactForm.get('categoryId')?.invalid && contactForm.get('categoryId')?.touched) {
+        <span class="error-text">Veuillez choisir une catégorie.</span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" rows="3" formControlName="notes" placeholder="Informations complémentaires..."></textarea>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label>
+        <input type="checkbox" formControlName="favorite">
+        Marquer comme contact favori ★
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <a routerLink="/contacts" class="btn-cancel">Annuler</a>
+      <button type="submit" [disabled]="contactForm.invalid" class="btn-submit">
+        {{ isEditMode ? 'Mettre à jour' : 'Enregistrer' }}
+      </button>
+    </div>
+  </form>
+</div>

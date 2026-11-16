@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="header-actions">
+    <h2>Gestion des Catégories</h2>
+    <a routerLink="/categories/new" class="btn-primary">+ Nouvelle catégorie</a>
+  </div>
+
+  @if (errorMessage) {
+    <div class="error-banner">{{ errorMessage }}</div>
+  }
+
+  <div class="category-grid">
+    @for (category of categories; track category.id) {
+      <div class="category-card" [style.border-left-color]="category.color">
+        <div class="category-info">
+          <span class="color-dot" [style.background-color]="category.color"></span>
+          <h3>{{ category.name }}</h3>
+          <small>Créée le : {{ category.createdAt }}</small>
+        </div>
+        <div class="card-actions">
+          <a [routerLink]="['/categories', category.id]" class="btn-view">Voir les contacts</a>
+          <button (click)="onDelete(category.id)" class="btn-delete">Supprimer</button>
+        </div>
+      </div>
+    } @empty {
+      <p>Aucune catégorie disponible.</p>
+    }
+  </div>
+</div>

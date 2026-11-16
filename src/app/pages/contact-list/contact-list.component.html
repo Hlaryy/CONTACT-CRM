@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="header-actions">
+    <h2>Liste des Contacts ({{ filteredContacts.length }})</h2>
+    <a routerLink="/contacts/new" class="btn-primary">+ Nouveau contact</a>
+  </div>
+
+  <!-- Barre de recherche et filtres -->
+  <div class="filters-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="applyFilters()"
+      placeholder="Rechercher par nom, email, entreprise..."
+      class="search-input"
+    >
+
+    <select [(ngModel)]="selectedCategoryId" (ngModelChange)="applyFilters()" class="filter-select">
+      <option value="">Toutes les catégories</option>
+      @for (cat of categories; track cat.id) {
+        <option [value]="cat.id">{{ cat.name }}</option>
+      }
+    </select>
+
+    <select [(ngModel)]="sortBy" (ngModelChange)="applyFilters()" class="filter-select">
+      <option value="name">Trier par Nom (A-Z)</option>
+      <option value="recent">Plus récents d'abord</option>
+    </select>
+
+    <label class="favorite-filter">
+      <input type="checkbox" [(ngModel)]="onlyFavorites" (ngModelChange)="applyFilters()">
+      Favoris uniquement ★
+    </label>
+  </div>
+
+  <!-- Grille des contacts -->
+  <div class="contacts-grid">
+    @for (contact of filteredContacts; track contact.id) {
+      <div class="contact-card">
+        <div class="card-top">
+          <div>
+            <h3>{{ contact.firstName }} {{ contact.lastName }}</h3>
+            @if (getCategory(contact.categoryId); as cat) {
+              <span class="category-badge" [style.background-color]="cat.color">
+                {{ cat.name }}
+              </span>
+            }
+          </div>
+          <button
+            (click)="onToggleFavorite(contact.id)"
+            class="btn-star"
+            [class.is-fav]="contact.favorite"
+            title="Basculer favori"
+          >
+            {{ contact.favorite ? '★' : '☆' }}
+          </button>
+        </div>
+
+        <div class="card-body">
+          <p><strong>Email :</strong> {{ contact.email }}</p>
+          <p><strong>Tél :</strong> {{ contact.phone }}</p>
+          @if (contact.company) {
+            <p><strong>Entreprise :</strong> {{ contact.company }}</p>
+          }
+        </div>
+
+        <div class="card-actions">
+          <a [routerLink]="['/contacts', contact.id]" class="btn-view">Détails</a>
+          <a [routerLink]="['/contacts', contact.id, 'edit']" class="btn-edit">Modifier</a>
+          <button (click)="onDelete(contact.id)" class="btn-delete">Supprimer</button>
+        </div>
+      </div>
+    } @empty {
+      <p class="empty-msg">Aucun contact ne correspond à vos critères.</p>
+    }
+  </div>
+</div>

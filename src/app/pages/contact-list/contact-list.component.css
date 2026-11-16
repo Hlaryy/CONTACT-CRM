@@ -1,0 +1,24 @@
+.container { max-width: 1050px; margin: 0 auto; }
+.header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.btn-primary { background: #3498db; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 5px; font-weight: bold; }
+
+.filters-bar { display: flex; flex-wrap: wrap; gap: 0.8rem; background: #f8f9fa; padding: 1rem; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 1.5rem; align-items: center; }
+.search-input { flex: 1; min-width: 220px; padding: 0.5rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; }
+.filter-select { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; background: white; }
+.favorite-filter { display: flex; align-items: center; gap: 0.4rem; cursor: pointer; font-weight: bold; color: #2c3e50; }
+
+.contacts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+.contact-card { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+.card-top h3 { margin: 0 0 0.4rem 0; color: #2c3e50; }
+.category-badge { display: inline-block; color: white; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
+
+.btn-star { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #bdc3c7; padding: 0; line-height: 1; }
+.btn-star.is-fav { color: #f1c40f; }
+
+.card-body p { margin: 0.3rem 0; font-size: 0.9rem; color: #555; }
+.card-actions { display: flex; gap: 0.5rem; margin-top: 1.2rem; border-top: 1px solid #eee; padding-top: 0.8rem; }
+.btn-view { background: #ecf0f1; color: #2c3e50; padding: 0.4rem 0.7rem; text-decoration: none; border-radius: 4px; font-size: 0.85rem; }
+.btn-edit { background: #f39c12; color: white; padding: 0.4rem 0.7rem; text-decoration: none; border-radius: 4px; font-size: 0.85rem; }
+.btn-delete { background: #e74c3c; color: white; border: none; padding: 0.4rem 0.7rem; border-radius: 4px; cursor: pointer; font-size: 0.85rem; margin-left: auto; }
+.empty-msg { color: #7f8c8d; font-style: italic; }

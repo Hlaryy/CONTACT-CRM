@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="welcome-banner">
+    <div>
+      <h2>Tableau de bord CRM</h2>
+      <p>Vue d'ensemble de votre réseau professionnel et de vos catégories.</p>
+    </div>
+    <div class="quick-actions">
+      <a routerLink="/contacts/new" class="btn-primary">+ Nouveau contact</a>
+      <a routerLink="/categories/new" class="btn-secondary">+ Nouvelle catégorie</a>
+    </div>
+  </div>
+
+  <!-- Cartes de statistiques globales -->
+  <div class="stats-grid">
+    <a routerLink="/contacts" class="stat-card blue">
+      <span class="stat-number">{{ totalContacts }}</span>
+      <span class="stat-label">Contacts au total</span>
+    </a>
+
+    <a routerLink="/favorites" class="stat-card gold">
+      <span class="stat-number">{{ totalFavorites }}</span>
+      <span class="stat-label">Contacts favoris ★</span>
+    </a>
+
+    <a routerLink="/categories" class="stat-card green">
+      <span class="stat-number">{{ totalCategories }}</span>
+      <span class="stat-label">Catégories actives</span>
+    </a>
+  </div>
+
+  <div class="dashboard-columns">
+    <!-- Colonne 1 : Répartition par catégorie -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Répartition par catégorie</h3>
+        <a routerLink="/categories">Gérer</a>
+      </div>
+
+      <div class="category-stats-list">
+        @for (item of categoriesWithCount; track item.category.id) {
+          <a [routerLink]="['/categories', item.category.id]" class="category-stat-row">
+            <div class="cat-info">
+              <span class="color-dot" [style.background-color]="item.category.color"></span>
+              <span>{{ item.category.name }}</span>
+            </div>
+            <span class="count-badge">{{ item.count }}</span>
+          </a>
+        } @empty {
+          <p class="empty-msg">Aucune catégorie créée.</p>
+        }
+      </div>
+    </div>
+
+    <!-- Colonne 2 : Derniers contacts ajoutés -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>Derniers contacts ajoutés</h3>
+        <a routerLink="/contacts">Tout voir</a>
+      </div>
+
+      <div class="recent-list">
+        @for (contact of recentContacts; track contact.id) {
+          <a [routerLink]="['/contacts', contact.id]" class="recent-row">
+            <div>
+              <strong>{{ contact.firstName }} {{ contact.lastName }}</strong>
+              <span class="sub-text">{{ contact.email }}</span>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        } @empty {
+          <p class="empty-msg">Aucun contact enregistré pour le moment.</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

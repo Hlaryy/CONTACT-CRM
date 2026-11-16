@@ -1,0 +1,12 @@
+.form-container { max-width: 650px; margin: 0 auto; background: white; padding: 2rem; border-radius: 8px; border: 1px solid #ddd; }
+h2 { margin-top: 0; color: #2c3e50; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; }
+label { font-weight: bold; margin-bottom: 0.4rem; color: #34495e; }
+input[type="text"], input[type="email"], input[type="tel"], select, textarea { padding: 0.6rem; border: 1px solid #ccc; border-radius: 4px; font-family: inherit; }
+.checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-weight: normal; cursor: pointer; }
+.error-text { color: #e74c3c; font-size: 0.85rem; margin-top: 0.3rem; }
+.form-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; }
+.btn-cancel { padding: 0.6rem 1.2rem; text-decoration: none; color: #555; border: 1px solid #ccc; border-radius: 4px; }
+.btn-submit { padding: 0.6rem 1.2rem; background: #2ecc71; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+.btn-submit:disabled { background: #95a5a6; cursor: not-allowed; }

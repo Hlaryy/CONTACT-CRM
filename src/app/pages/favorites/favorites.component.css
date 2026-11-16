@@ -1,0 +1,17 @@
+.container { max-width: 1050px; margin: 0 auto; }
+.header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+.btn-secondary { background: #34495e; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 5px; font-weight: bold; }
+.btn-primary { display: inline-block; margin-top: 0.8rem; background: #3498db; color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 5px; font-weight: bold; }
+
+.favorites-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+.favorite-card { background: white; border: 1px solid #f1c40f; border-left-width: 5px; border-radius: 8px; padding: 1.2rem; display: flex; flex-direction: column; justify-content: space-between; }
+.card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+.card-top h3 { margin: 0 0 0.4rem 0; color: #2c3e50; }
+.category-badge { display: inline-block; color: white; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; font-weight: bold; }
+
+.btn-star { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #f1c40f; padding: 0; line-height: 1; }
+.card-body p { margin: 0.3rem 0; font-size: 0.9rem; color: #555; }
+.card-actions { margin-top: 1.2rem; border-top: 1px solid #eee; padding-top: 0.8rem; }
+.btn-view { display: inline-block; background: #2c3e50; color: white; padding: 0.4rem 0.8rem; text-decoration: none; border-radius: 4px; font-size: 0.85rem; }
+
+.empty-state { grid-column: 1 / -1; text-align: center; padding: 2.5rem; background: #f8f9fa; border: 1px dashed #ccc; border-radius: 8px; color: #7f8c8d; }

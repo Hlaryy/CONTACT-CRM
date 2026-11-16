@@ -1,0 +1,72 @@
+<div class="container">
+  <a routerLink="/contacts" class="back-link">← Retour à la liste des contacts</a>
+
+  @if (contact) {
+    <div class="detail-card">
+      <div class="detail-header">
+        <div>
+          <div class="title-row">
+            <h2>{{ contact.firstName }} {{ contact.lastName }}</h2>
+            <button
+              (click)="onToggleFavorite()"
+              class="btn-star"
+              [class.is-fav]="contact.favorite"
+              title="Basculer favori"
+            >
+              {{ contact.favorite ? '★' : '☆' }}
+            </button>
+          </div>
+
+          @if (category) {
+            <a
+              [routerLink]="['/categories', category.id]"
+              class="category-badge"
+              [style.background-color]="category.color"
+            >
+              {{ category.name }}
+            </a>
+          }
+        </div>
+
+        <div class="header-actions">
+          <a [routerLink]="['/contacts', contact.id, 'edit']" class="btn-edit">Modifier</a>
+          <button (click)="onDelete()" class="btn-delete">Supprimer</button>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="info-item">
+          <span class="label">Email</span>
+          <p>{{ contact.email }}</p>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Téléphone</span>
+          <p>{{ contact.phone }}</p>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Entreprise</span>
+          <p>{{ contact.company || 'Non renseignée' }}</p>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Poste</span>
+          <p>{{ contact.jobTitle || 'Non renseigné' }}</p>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Créé le</span>
+          <p>{{ contact.createdAt }}</p>
+        </div>
+      </div>
+
+      <div class="notes-section">
+        <span class="label">Notes</span>
+        <p class="notes-box">{{ contact.notes || 'Aucune note pour ce contact.' }}</p>
+      </div>
+    </div>
+  } @else {
+    <p class="error-msg">Contact introuvable.</p>
+  }
+</div>
